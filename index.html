@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="img">
+            <img src="./imgs/left-arrow.png" alt="">
+        </div>
+
+        <div class="page1">
+
+
+            <div class="heading">
+                <p>Setting up</p>
+                <h1>Your PIN Code</h1>
+            </div>
+            <div class="step-indicator">1 of 2</div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill segment completed"></div>
+                <div class="progress-bar-fill2 segment completed"></div>
+            </div>
+            <div class="instructions">To set up your <span>PIN</span> create a <span>5 digit code</span> then confirm it
+                below</div>
+
+            <div class="input_heading">
+                <p>PIN CODE</p>
+            </div>
+            <div class="pin-input-container">
+                <input type="number" maxlength="1" class="pin-input" id="pin1">
+                <input type="number" maxlength="1" class="pin-input" id="pin2">
+                <input type="number" maxlength="1" class="pin-input" id="pin3">
+                <input type="number" maxlength="1" class="pin-input" id="pin4">
+                <input type="number" maxlength="1" class="pin-input" id="pin5">
+                <input type="number" maxlength="1" class="pin-input" id="pin6">
+            </div>
+
+
+            <div class="input_heading">
+                <p>
+                    CONFORM YOUR PIN CODE</p>
+            </div>
+            <div class="pin-input-container-hidden">
+                <input type="password" maxlength="1" class="pin-input" id="hiddenPin1">
+                <input type="password" maxlength="1" class="pin-input" id="hiddenPin2">
+                <input type="password" maxlength="1" class="pin-input" id="hiddenPin3">
+                <input type="password" maxlength="1" class="pin-input" id="hiddenPin4">
+                <input type="password" maxlength="1" class="pin-input" id="hiddenPin5">
+                <input type="password" maxlength="1" class="pin-input" id="hiddenPin6">
+            </div>
+            <div class="pin_status"></div>
+
+            <h3 class="noPin" style="text-align: center; margin-bottom: 10px;"></h3>
+            <div class="btn">
+                <button id="submitBtn">CONTINUE</button>
+            </div>
+
+        </div>
+
+
+        <div class="page2 hidden">
+            <h1 class="status" style="text-align: center; margin-top:5%;"></h1>
+            <div class="step-indicator">2 of 2</div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill segment completed"></div>
+                <div class="progress-bar-fill segment completed"></div>
+            </div>
+            <div class="success">
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
