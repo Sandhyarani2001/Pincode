@@ -100,34 +100,58 @@ async function fetchPinDetails(pin) {
     try {
         const response = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
         const data = await response.json();
+        // if (data[0].Status === "Success" && data[0].PostOffice) {
+        //     disSts.textContent = "Success";
+        //     console.log();
+            
+        // } else {
+        //     disSts.textContent = "PinCode not found";
+        // }
         renderDetails(data) 
-        if (data[0].Status === "Success" && data[0].PostOffice) {
-            disSts.textContent = "Success";
-        } else {
-            disSts.textContent = "PinCode not found";
-        }
     } catch (error) {
         console.log(error)
     }
     
 };
 
-function renderDetails(pincodes){
-    page2Success.innerHTML = '';
+// function renderDetails(pincodes){
+//     page2Success.innerHTML = '';
     
-      pincodes.forEach(ele => {
-        page2Success.innerHTML += `
-        <p>Status: ${ele.Status}</p>
-        <p>Name: ${ele.PostOffice[0].Name}</p>
-        <p>Division: ${ele.PostOffice[0].Division}</p>
-        <p>Pincode: ${ele.PostOffice[0].Pincode}</p>
-        <p>Region: ${ele.PostOffice[0].Region}</p>
-        <p>State: ${ele.PostOffice[0].State}</p>
-        <p>Block: ${ele.PostOffice[0].Block}</p>
+//       pincodes.forEach(ele => {
+//         page2Success.innerHTML += `
+//         <p>Status: ${ele.Status}</p>
+//         <p>Name: ${ele.PostOffice[0].Name}</p>
+//         <p>Division: ${ele.PostOffice[0].Division}</p>
+//         <p>Pincode: ${ele.PostOffice[0].Pincode}</p>
+//         <p>Region: ${ele.PostOffice[0].Region}</p>
+//         <p>State: ${ele.PostOffice[0].State}</p>
+//         <p>Block: ${ele.PostOffice[0].Block}</p>
 
-        `
-       });
-     }
+//         `
+//        });
+//      }
+
+function renderDetails(pincodes) {
+    disSts.innerHTML = '';
+
+    pincodes.forEach(ele => {
+        if (ele.Status === "Success" && ele.PostOffice) {
+            const postOffice = ele.PostOffice[0];
+            disSts.innerHTML += `
+                <p>Status: ${ele.Status}</p>
+                <p>Name: ${postOffice.Name}</p>
+                <p>Division: ${postOffice.Division}</p>
+                <p>Pincode: ${postOffice.Pincode}</p>
+                <p>Region: ${postOffice.Region}</p>
+                <p>State: ${postOffice.State}</p>
+                <p>Block: ${postOffice.Block}</p>
+            `;
+        } else {
+            disSts.innerHTML += `<h6>PinCode not found</h6>`;
+        }
+    });
+}
+
 
 
 submitBtn.addEventListener('click', (e) => {
