@@ -128,16 +128,24 @@ async function fetchPinDetails(pin) {
 //         <p>Block: ${ele.PostOffice[0].Block}</p>
 
 //         `
+
+//         if (ele.Status === "Success" && ele.PostOffice) {
+//             disSts.textContent = "Success";
+//            }else{
+//             disSts.textContent = "Pincode Not Found";
+//            }
 //        });
+       
 //      }
 
 function renderDetails(pincodes) {
-    disSts.innerHTML = '';
+    page2Success.innerHTML = '';
 
     pincodes.forEach(ele => {
         if (ele.Status === "Success" && ele.PostOffice) {
+            disSts.innerHTML = `<h2>${ele.Status}<h3>`;
             const postOffice = ele.PostOffice[0];
-            disSts.innerHTML += `
+            page2Success.innerHTML += `
                 <p>Status: ${ele.Status}</p>
                 <p>Name: ${postOffice.Name}</p>
                 <p>Division: ${postOffice.Division}</p>
@@ -147,7 +155,9 @@ function renderDetails(pincodes) {
                 <p>Block: ${postOffice.Block}</p>
             `;
         } else {
-            disSts.innerHTML += `<h6>PinCode not found</h6>`;
+            disSts.innerHTML += `
+            <h2>Status: ${ele.Status}<h3>
+            <p>No data found for the provided pincode.</p>`;
         }
     });
 }
