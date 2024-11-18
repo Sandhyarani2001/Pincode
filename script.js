@@ -1,25 +1,4 @@
 
-// const postalpincode = [];
-// const div = document.querySelector('.container');
-// fetch('https://api.postalpincode.in/pincode/226001')
-// .then(res => res.json())
-// .then(data => {
-//    postalpincode = data[0].PostOffice;
-//    renderPincode(postalpincode)
-
-// })
-// .catch(error => console.log(error))
-
-// function renderPincode(pincodes){
-//    div.innerHTML = '';
-
-//    pincodes.forEach(pincode => {
-//     div.innerHTML += `
-//      <p>${pincode.Pincode}</p>
-//     `
-//    });
-// }
-
 
 
 let postalpincode = [];
@@ -44,8 +23,17 @@ function moveFocus(inputs, index) {
     }
 }
 
+function validateInput(input) {
+    if (input.value.length > 1) {
+        input.value = input.value.slice(0, 1); // Keep only the first character
+    }
+}
+
+
 pinInputs.forEach((input, index) => {
+    input.setAttribute('maxlength', '1');
     input.addEventListener('input', () => {
+        validateInput(input);
         moveFocus(pinInputs, index);
         checkPinMatch();
     });
@@ -100,43 +88,12 @@ async function fetchPinDetails(pin) {
     try {
         const response = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
         const data = await response.json();
-        // if (data[0].Status === "Success" && data[0].PostOffice) {
-        //     disSts.textContent = "Success";
-        //     console.log();
-            
-        // } else {
-        //     disSts.textContent = "PinCode not found";
-        // }
-        renderDetails(data) 
+        renderDetails(data) ;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
     
 };
-
-// function renderDetails(pincodes){
-//     page2Success.innerHTML = '';
-    
-//       pincodes.forEach(ele => {
-//         page2Success.innerHTML += `
-//         <p>Status: ${ele.Status}</p>
-//         <p>Name: ${ele.PostOffice[0].Name}</p>
-//         <p>Division: ${ele.PostOffice[0].Division}</p>
-//         <p>Pincode: ${ele.PostOffice[0].Pincode}</p>
-//         <p>Region: ${ele.PostOffice[0].Region}</p>
-//         <p>State: ${ele.PostOffice[0].State}</p>
-//         <p>Block: ${ele.PostOffice[0].Block}</p>
-
-//         `
-
-//         if (ele.Status === "Success" && ele.PostOffice) {
-//             disSts.textContent = "Success";
-//            }else{
-//             disSts.textContent = "Pincode Not Found";
-//            }
-//        });
-       
-//      }
 
 function renderDetails(pincodes) {
     page2Success.innerHTML = '';
